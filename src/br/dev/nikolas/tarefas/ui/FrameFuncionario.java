@@ -28,7 +28,7 @@ public class FrameFuncionario {
 
 	private void criarTela(JFrame telaLista) {
 
-		JDialog tela = new JDialog(telaLista, "Cadastro", true);
+		JDialog tela = new JDialog(telaLista, "Cadastro de Funcionários", true);
 		tela.setLayout(null);
 		tela.setSize(400, 400);
 		tela.setResizable(false);

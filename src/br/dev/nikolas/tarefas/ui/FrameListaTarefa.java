@@ -50,7 +50,7 @@ public class FrameListaTarefa {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new FrameTarefa();
+				new FrameTarefa(tela);
 				
 			}
 		});

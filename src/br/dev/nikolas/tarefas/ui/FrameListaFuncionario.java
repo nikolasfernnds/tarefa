@@ -22,7 +22,7 @@ public class FrameListaFuncionario {
 	private JLabel lblTitulo;
 	private JTable tblFuncionarios;
 	private JScrollPane scrollFuncionarios;
-	private JButton btnNovo, btnExcluir, btnAtualizar, btnSair;
+	private JButton btnNovo, btnSair;
 	
 	private Font fontTitulo = new Font("Arial", Font.BOLD, 26);
 	
@@ -72,7 +72,7 @@ public class FrameListaFuncionario {
 		scrollFuncionarios.setBounds(30, 80, 400, 300);
 		
 		btnNovo = new JButton("Cadastrar");
-		btnNovo.setBounds(30, 390, 150, 40);
+		btnNovo.setBounds(140, 500, 150, 40);
 		btnNovo.addActionListener(new ActionListener() {
 			
 			@Override
@@ -81,6 +81,15 @@ public class FrameListaFuncionario {
 //				new FrameListaFuncionario();
 			}
 		});
+		btnSair = new JButton("Sair");
+		btnSair.setBounds(300, 500, 150, 40);
+		btnSair.addActionListener(new ActionListener() {
+		        @Override
+		        public void actionPerformed(ActionEvent e) {
+		            new FrameTelaInicial();
+		            tela.dispose();
+		        }
+		    });
 		
 		
 //		bntNovo = new JButton("Novo");
@@ -91,6 +100,7 @@ public class FrameListaFuncionario {
 		painel.add(lblTitulo);
 		painel.add(scrollFuncionarios);
 		painel.add(btnNovo);
+		painel.add(btnSair);
 		
 		tela.setVisible(true);
 		
