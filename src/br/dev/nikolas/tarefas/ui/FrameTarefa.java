@@ -4,6 +4,7 @@ import java.awt.Button;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -12,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.JComboBox;
 
 import br.dev.nikolas.tarefas.dao.FuncionarioDAO;
 import br.dev.nikolas.tarefas.model.Funcionario;
@@ -19,10 +21,11 @@ import br.dev.nikolas.tarefas.utils.Utils;
 
 public class FrameTarefa {
 
-	private JLabel lblCodigo, lblTitulo, lblDescricao, lblDataInicial, lblPrazo, lblResponsavel;
-	private JTextField txtCodigo, txtTitulo, txtDescricao, txtResponsavel;
-	private JSpinner dataInicial;
+	private JLabel lblCodigo, lblTitulo, lblDescricao, lblFuncionario, lblPrazo, lblResponsavel, lblDataInicial, lblStatus;
+	private JTextField txtCodigo, txtTitulo, txtDataInicial, txtPrazo, txtDescricao, txtResponsavel;
 	private JButton bntSalvar, bntSair;
+	JComboBox<String> boxStatus;
+	JComboBox<String> boxFuncionario;
 
 	public FrameTarefa(JFrame telaLista) {
 		criarTela(telaLista);
@@ -48,12 +51,37 @@ public class FrameTarefa {
 		lblDescricao= new JLabel("Descrição");
 		lblDescricao.setBounds(20, 85, 200, 30);
 		txtDescricao = new JTextField();
-		txtDescricao.setBounds(20, 115, 345, 50);
+		txtDescricao.setBounds(20, 115, 345, 30);
 
-		lblDataInicial = new JLabel("Telefone");
-		lblDataInicial.setBounds(50, 150, 200, 30);
+		lblDataInicial = new JLabel("Data Inicial");
+		lblDataInicial.setBounds(20, 150, 200, 30);
+		txtDataInicial = new JTextField();
+		txtDataInicial.setBounds(20, 185, 200, 30);
+		
+		lblPrazo = new JLabel("Prazo");
+		lblPrazo.setBounds(20, 210, 200, 30);
+		txtPrazo = new JTextField();
+		txtPrazo.setBounds(20, 245, 200, 30);
 
-
+		lblStatus= new JLabel("Status");
+		lblStatus.setBounds(20, 280, 150, 50);
+		boxStatus = new JComboBox<String>();
+		boxStatus.setBounds(20, 340, 130, 30);
+		boxStatus.addItem("NÃO_INICIADA");
+		boxStatus.addItem("EM_ANDAMENTO");
+		boxStatus.addItem("FINALIZADA");
+		boxStatus.addItem("EM_ATRASO");
+		
+		lblFuncionario = new JLabel("Responsável");
+		lblFuncionario.setBounds(20, 380, 150, 50);
+		boxFuncionario = new JComboBox<String>();
+		boxFuncionario.setBounds(20, 440, 150, 30);
+		FuncionarioDAO dao = new FuncionarioDAO(null);
+		List<Funcionario> funcionarios = dao.showEmployees();
+		for (Funcionario f : funcionarios) {
+			boxFuncionario.addItem(f.getNome());
+		}
+		
 		bntSalvar = new JButton("Salvar");
 		bntSalvar.setBounds(80, 490, 100, 40);
 
@@ -110,6 +138,14 @@ public class FrameTarefa {
 		painel.add(txtDescricao);
 		painel.add(bntSalvar);
 		painel.add(bntSair);
+		painel.add(lblDataInicial);
+		painel.add(txtDataInicial);
+		painel.add(lblPrazo);
+		painel.add(txtPrazo);
+		painel.add(lblStatus);
+		painel.add(boxStatus);
+		painel.add(lblFuncionario);
+		painel.add(boxFuncionario);
 		painel.revalidate();
 		painel.repaint();
 
